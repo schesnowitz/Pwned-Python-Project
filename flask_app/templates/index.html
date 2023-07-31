@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <div class="card-header">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Check To See If Your Password Has Been Pwned.</h5>
+    <p class="card-text">
+    <form method="POST" action="/">
+      {{ form.csrf_token }}
+      {{ form.password_field.label }} {{ form.password_field(size=20, value="", class="form-control") }}
+      <input type="submit" value="Submit!" class="btn btn-info form-control">
+    </form>
+    {% if "Rock and Roll" in result %}
+    <div class="p-3 rounded-2 bg-success">{{ result }} </div>
+    {% elif not result %}
+    {% else %}
+    <div class="p-3 rounded-2 bg-danger">{{ result }}</div>
+    {% endif %}
+    </p>
+  </div>
+</div>
+{% endblock %}
